@@ -14,7 +14,7 @@ public class Missel extends Movel {
 		this.x = x;
 		this.y = y;
 
-		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("missel.png"));
+		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/missel.png"));
 		imagem = referencia.getImage();
 
 		this.largura = imagem.getWidth(null);

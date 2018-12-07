@@ -21,10 +21,10 @@ public class Fase extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -5079021684583630134L;
 
 	private Image fundo;
-        
-        private int contador;
-        
-        private int record; 
+
+	private int contador;
+
+	private int record;
 
 	private Nave nave;
 
@@ -45,7 +45,7 @@ public class Fase extends JPanel implements ActionListener {
 		setDoubleBuffered(true);
 		addKeyListener(new TecladoAdapter());
 
-		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("fundo.png"));
+		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/fundo.png"));
 		fundo = referencia.getImage();
 		nave = new Nave();
 
@@ -77,31 +77,29 @@ public class Fase extends JPanel implements ActionListener {
 			for (int i = 0; i < misseis.size(); i++) {
 				Missel m = (Missel) misseis.get(i);
 				graficos.drawImage(m.getImagem(), m.getX(), m.getY(), this);
-                                
 			}
 
 			for (int i = 0; i < inimigos.size(); i++) {
 				Inimigo in = inimigos.get(i);
 				graficos.drawImage(in.getImagem(), in.getX(), in.getY(), this);
-                                
-                        }
-                       
-                        if(inimigos.size() < 5){
-                           
-                            inicializarInimigos();
-                                    
-                            contador = contador + 50;
-                        }
-                        
-                        graficos.setColor(Color.white);
+			}
+
+			if(inimigos.size() < 5){
+				inicializarInimigos();
+				contador = contador + 50;
+			}
+
+			graficos.setColor(Color.white);
 			graficos.drawString("Pontuação: " + contador , 5, 15);
-                        graficos.setColor(Color.yellow);
-                        graficos.drawString("Record: " + contador , 200, 15);
+			graficos.setColor(Color.yellow);
+			graficos.drawString("Record: " + record , 200, 15);
 		} else {
-			ImageIcon fimJogo = new ImageIcon(Jogo.class.getResource("game_over.jpg"));
-                        
-                        
-                        contador = 0;
+			ImageIcon fimJogo = new ImageIcon(Jogo.class.getResource("imgs/game_over.jpg"));
+
+			if (contador > record){
+				record = contador;
+			}
+			contador = 0;
 
 			graficos.drawImage(fimJogo.getImage(), 0, 0, null);
 		}
@@ -110,12 +108,6 @@ public class Fase extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (inimigos.size() < 5) {
-			if (contador > record){
-                        record = contador;
-                        }
-		}
-
 		List<Missel> misseis = nave.getMisseis();
 
 		for (int i = 0; i < misseis.size(); i++) {
@@ -171,6 +163,7 @@ public class Fase extends JPanel implements ActionListener {
 				formaInimigo = tempInimigo.getBounds();
 
 				if (formaMissel.intersects(formaInimigo)) {
+					contador++;
 					tempInimigo.setVisible(false);
 					tempMissel.setVisible(false);
 				}
