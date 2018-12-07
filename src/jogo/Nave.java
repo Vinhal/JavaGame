@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 public class Nave extends Movel {
 
 	private int dx, dy;
+	private boolean emModoEspecial = false;
 
 	private List<Missel> misseis;
 
@@ -48,7 +49,13 @@ public class Nave extends Movel {
 	}
 
 	public void atira() {
-		this.misseis.add(new Missel(this.x + this.largura, this.y + this.altura / 3));
+		Missel missel = new Missel(this.x + this.largura, this.y + this.altura / 3);
+
+		if (emModoEspecial) {
+			missel.modoEspecial();
+		}
+
+		this.misseis.add(missel);
 	}
 
 	public void keyPressed(KeyEvent tecla) {
@@ -127,6 +134,10 @@ public class Nave extends Movel {
 
 	public Image getImagem() {
 		return imagem;
+	}
+
+	public void setEmModoEspecial(Boolean emModoEspecial) {
+		this.emModoEspecial = emModoEspecial;
 	}
 
 	@Override

@@ -35,13 +35,6 @@ public class Jogo extends JFrame {
 		menuBar.setBackground(Color.WHITE);
 		menuBar.setBorder(new LineBorder(Color.red));
 		JMenu menu = new JMenu("Opções");
-		JMenuItem sobre = new JMenuItem("Sobre");
-		sobre.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"");
-			}
-		});
 
 		JMenuItem sair = new JMenuItem("Sair");
 		sair.addActionListener(new ActionListener() {
@@ -52,8 +45,6 @@ public class Jogo extends JFrame {
 			}
 		});
 
-		menu.add(sobre);
-		menu.add(new JSeparator());
 		menu.add(sair);
 		menuBar.add(menu);
 		setJMenuBar(menuBar);

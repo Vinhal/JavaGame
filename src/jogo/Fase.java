@@ -34,6 +34,8 @@ public class Fase extends JPanel implements ActionListener {
 
 	private boolean emJogo;
 
+	private String mode = "";
+
 	private int[][] coordenadas = { { 2380, 29 }, { 2600, 59 }, { 1380, 89 },
 			{ 780, 109 }, { 580, 139 }, { 880, 239 }, { 790, 259 },
 			{ 760, 50 }, { 790, 150 }, { 1980, 209 }, { 560, 45 }, { 510, 70 },
@@ -93,6 +95,8 @@ public class Fase extends JPanel implements ActionListener {
 			graficos.drawString("Pontuação: " + contador , 5, 15);
 			graficos.setColor(Color.yellow);
 			graficos.drawString("Record: " + record , 200, 15);
+			graficos.setColor(Color.red);
+			graficos.drawString(mode, 320, 15);
 		} else {
 			ImageIcon fimJogo = new ImageIcon(Jogo.class.getResource("imgs/game_over.jpg"));
 
@@ -100,6 +104,7 @@ public class Fase extends JPanel implements ActionListener {
 				record = contador;
 			}
 			contador = 0;
+			mode = "";
 
 			graficos.drawImage(fimJogo.getImage(), 0, 0, null);
 		}
@@ -128,6 +133,11 @@ public class Fase extends JPanel implements ActionListener {
 			} else {
 				inimigos.remove(i);
 			}
+		}
+
+		if (contador > 10) {
+			nave.setEmModoEspecial(true);
+			mode = "MODO ESPECIAL";
 		}
 
 		nave.mexer();

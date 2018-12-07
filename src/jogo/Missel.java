@@ -23,6 +23,19 @@ public class Missel extends Movel {
 		visible = true;
 	}
 
+	public void modoEspecial() {
+		this.x = x;
+		this.y = y;
+
+		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/especial.png"));
+		imagem = referencia.getImage();
+
+		this.largura = imagem.getWidth(null);
+		this.altura = imagem.getHeight(null);
+
+		visible = true;
+	}
+
 	public void mexer() {
 		this.x += VELOCIDADE;
 		if (this.x > LARGURA_TELA) {
