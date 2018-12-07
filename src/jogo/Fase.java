@@ -36,18 +36,18 @@ public class Fase extends JPanel implements ActionListener {
 
 	private String mode = "";
 
-	private int[][] coordenadas = { { 2380, 29 }, { 2600, 59 }, { 1380, 89 },
-			{ 780, 109 }, { 580, 139 }, { 880, 239 }, { 790, 259 },
-			{ 760, 50 }, { 790, 150 }, { 1980, 209 }, { 560, 45 }, { 510, 70 },
-			{ 930, 159 }, { 590, 80 }, { 530, 60 }, { 940, 59 }, { 990, 30 },
-			{ 920, 200 }, { 900, 259 }, { 660, 50 } };
+	private int[][] coordenadas = { { 2380, 290 }, { 2600, 590 }, { 1380, 500 },
+			{ 1780, 209 }, { 1580, 139 }, { 1880, 239 }, { 1790, 259 },
+			{ 1760, 300 }, { 1790, 500 }, { 1980, 210 }, { 1560, 450 }, { 1510, 450 },
+			{ 1930, 159 }, { 1590, 156 }, { 1530, 60 }, { 1340, 590 }, { 1290, 300 },
+			{ 1920, 200 }, { 1900, 259 }, { 1660, 425 } };
 
 	public Fase() {
 		setFocusable(true);
 		setDoubleBuffered(true);
 		addKeyListener(new TecladoAdapter());
 
-		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/fundo.png"));
+		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/background.png"));
 		fundo = referencia.getImage();
 		nave = new Nave();
 
@@ -86,9 +86,8 @@ public class Fase extends JPanel implements ActionListener {
 				graficos.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
 
-			if(inimigos.size() < 5){
+			if(inimigos.size() < 10){
 				inicializarInimigos();
-				contador = contador + 50;
 			}
 
 			graficos.setColor(Color.white);

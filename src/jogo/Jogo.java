@@ -59,7 +59,7 @@ public class Jogo extends JFrame {
 	}
 
 	private void configurarTela() {
-		setSize(500, 420);
+		setSize(1200, 420);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

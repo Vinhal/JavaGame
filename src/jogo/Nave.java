@@ -34,17 +34,17 @@ public class Nave extends Movel {
 		if (this.x < 1) {
 			this.x = 2;
 		}
-		
-		if (this.x > 462) {
-			this.x = 462;
+
+		if (this.x > 110) {
+			this.x = 110;
 		}
 
 		if (this.y < 1) {
 			this.y = 2;
 		}
 
-		if (this.y > 340) {
-			this.y = 340;
+		if (this.y > 700) {
+			this.y = 700;
 		}
 	}
 

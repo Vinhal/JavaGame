@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Missel extends Movel {
 
-	private static final int LARGURA_TELA = 500;
+	private static final int LARGURA_TELA = 1200;
 	private static final int VELOCIDADE = 2;
 
 	public Missel(int x, int y) {
