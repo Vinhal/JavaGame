@@ -26,7 +26,7 @@ public class Fase extends JPanel implements ActionListener {
 
 	private int record;
 
-	private Nave nave;
+	private Player player;
 
 	private Timer timer;
 
@@ -49,7 +49,7 @@ public class Fase extends JPanel implements ActionListener {
 
 		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/background.png"));
 		fundo = referencia.getImage();
-		nave = new Nave();
+		player = new Ajudante();
 
 		emJogo = true;
 
@@ -78,9 +78,9 @@ public class Fase extends JPanel implements ActionListener {
 		graficos.drawImage(fundo, 0, 0, null);
 
 		if (emJogo) {
-			graficos.drawImage(nave.getImagem(), nave.getX(), nave.getY(), this);
+			graficos.drawImage(player.getImagem(), player.getX(), player.getY(), this);
 
-			List<Missel> misseis = nave.getMisseis();
+			List<Missel> misseis = player.getMisseis();
 
 			for (int i = 0; i < misseis.size(); i++) {
 				Missel m = (Missel) misseis.get(i);
@@ -118,7 +118,7 @@ public class Fase extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		List<Missel> misseis = nave.getMisseis();
+		List<Missel> misseis = player.getMisseis();
 
 		for (int i = 0; i < misseis.size(); i++) {
 			Missel m = (Missel) misseis.get(i);
@@ -140,18 +140,17 @@ public class Fase extends JPanel implements ActionListener {
 			}
 		}
 
-		if (contador > 10) {
-			nave.setEmModoEspecial(true);
-			mode = "MODO ESPECIAL";
+		if (contador > 50) {
+			mode = "NOEL LIBERADO - clique em ENTER para jogar com ele!";
 		}
 
-		nave.mexer();
+		player.mexer();
 		checarColisoes();
 		repaint();
 	}
 
 	public void checarColisoes() {
-		Rectangle formaNave = nave.getBounds();
+		Rectangle formaNave = player.getBounds();
 		Rectangle formaInimigo;
 		Rectangle formaMissel;
 
@@ -161,13 +160,13 @@ public class Fase extends JPanel implements ActionListener {
 			formaInimigo = tempInimigo.getBounds();
 
 			if (formaNave.intersects(formaInimigo)) {
-				nave.setVisivel(false);
+				player.setVisivel(false);
 				tempInimigo.setVisible(false);
 				emJogo = false;
 			}
 		}
 
-		List<Missel> misseis = nave.getMisseis();
+		List<Missel> misseis = player.getMisseis();
 
 		for (int i = 0; i < misseis.size(); i++) {
 			Missel tempMissel = misseis.get(i);
@@ -192,16 +191,20 @@ public class Fase extends JPanel implements ActionListener {
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				emJogo = true;
-				nave = new Nave();
+				if (record > 50) {
+					player = new Ajudante();
+				} else {
+					player = new Noel();
+				}
 				inicializarInimigos();
 			}
 
-			nave.keyPressed(e);
+			player.keyPressed(e);
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			nave.keyReleased(e);
+			player.keyReleased(e);
 		}
 	}
 }

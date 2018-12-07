@@ -8,14 +8,14 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-public class Nave extends Movel {
+public class Noel extends Movel implements Player {
 
 	private int dx, dy;
 	private boolean emModoEspecial = false;
 
 	private List<Missel> misseis;
 
-	public Nave() {
+	public Noel() {
 		ImageIcon referencia = new ImageIcon(Jogo.class.getResource("imgs/nave.png"));
 		imagem = referencia.getImage();
 		altura = imagem.getHeight(null);
@@ -50,11 +50,7 @@ public class Nave extends Movel {
 
 	public void atira() {
 		Missel missel = new Missel(this.x + this.largura, this.y + this.altura / 3);
-
-		if (emModoEspecial) {
-			missel.modoEspecial();
-		}
-
+		missel.modoEspecial();
 		this.misseis.add(missel);
 	}
 
