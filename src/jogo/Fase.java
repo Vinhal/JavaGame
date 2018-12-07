@@ -67,6 +67,12 @@ public class Fase extends JPanel implements ActionListener {
 		}
 	}
 
+	public void addInimigos() {
+		for (int i = 0; i < coordenadas.length; i++) {
+			inimigos.add(new Inimigo(coordenadas[i][0], coordenadas[i][1]));
+		}
+	}
+
 	public void paint(Graphics g) {
 		Graphics2D graficos = (Graphics2D) g;
 		graficos.drawImage(fundo, 0, 0, null);
@@ -86,8 +92,8 @@ public class Fase extends JPanel implements ActionListener {
 				graficos.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
 
-			if(inimigos.size() < 10){
-				inicializarInimigos();
+			if(inimigos.size() < 20){
+				addInimigos();
 			}
 
 			graficos.setColor(Color.white);

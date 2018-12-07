@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Inimigo extends Movel {
 
-	private static final int LARGURA_TELA = 500;
+	private static final int LARGURA_TELA = 1200;
 	private static final int VELOCIDADE = 2;
 
 	private static int contador = 0;
